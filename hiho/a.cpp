@@ -1,57 +1,61 @@
-#include<bits/stdc++.h>
-using namespace std;
-#define LOACL  freopen("in","r",stdin);\
-      freopen("out","w",stdout); 
-
-#define add(u,v,w) (e[++tot]=(edge){v,head[u],1},head[u]=tot;) 
-#define f(i,l,r) for(int i=l;i<=r;++i)
-#define g(i,l,r) for(int i=l;i>=r;--i)
-#define CLR(arr,val) memset(arr,val,sizeof(arr))
-int heap[100005], size = 0;
-typedef long long ll; 
-void push(int x)
-{
-    heap[++size] =x ;
-    int i=size;
-    while(i>1 && x > heap[i>>1])
-    {
-        heap[i]=heap[i>>1];
-        i>>=1;
-    }
-    heap[i]=x;
-} 
-int pop()
-{
-  int x = heap[1];
-  int t = heap[size--];
-  int i=1;
-  for(i=1;i*2<=size;)
-  {
-    int a = 2*i,b=2*i+1;
-    if(heap[a]<heap[b])a=b;
-    if(heap[a]<t)break;
-    heap[i]=heap[a];
-    i=a;
-  }
-  heap[i]=t;
+ #include <bits/stdc++.h>
+ using namespace std;
+ typedef long long ll ;
+ typedef double    dl ;
+ #define INF ((ll)2e9)
  
-
-
-  return x;
-} 
-int main(){
-  LOACL
-    int n, w;
-    char c;
-    cin >> n;
-    while(n--){
-        cin >> c;
-        if(c == 'A'){
-            cin >> w;
-            push(w);
-        } else {
-            cout << pop() << endl;
-        }
-    }
-    return 0;
-}
+ const int  inf = 987654321;
+ const int sz = 1e6 + 5;
+ const int mod = 1e9 + 7;
+ const int sqrtn = 300; 
+ 
+ #define f(i,l,r) for(int i=(int)l;i<=(int)r;++i)
+ #define g(i,l,r) for(int i=(int)l;i>=(int)r;--i)
+ #define CLR(arr,val) memset(arr,val,sizeof(arr))
+ #define sz(a)   strlen(a)
+ #define FAST_IO ios::sync_with_stdio(false);cin.tie(0);
+ 
+ #define lowbit(x) x&(-x)
+ #define X first
+ #define Y second 
+ 
+ #define pb push_back
+ #define pii pair<int,int>
+ 
+ ll poww(ll a,ll b,ll c )
+ {
+     ll ans=1,base=a;
+     while(b!=0)
+     {
+         if(b&1!=0) ans = ans*base%c; 
+         base= base*base%c;
+         b/=2;
+     }
+    return ans;
+ }
+ int gcd(int a,int b)
+ {
+     if(b==0)return a;
+     return gcd(b,a%b);
+ }
+ 
+ int dir[8][2]={{1,0},{-1,0},{0,1},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}};
+ int n;
+ 
+ void work()
+ {
+     
+ }
+ 
+ int main()
+ {
+     FAST_IO ;
+     
+     freopen("in","r",stdin);
+     freopen("out","w",stdout);
+     cout<<"hello"<<endl;
+  
+     work();
+    
+     return 0; 
+ }

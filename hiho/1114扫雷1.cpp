@@ -13,57 +13,80 @@ const int sqrtn = 300;
 #define g(i,l,r) for(int i=l;i>=r;--i)
 #define CLR(arr,val) memset(arr,val,sizeof(arr)) 
 typedef long long ll; 
-int a[sz];
-int vis[sz];
-int t,n,cnt;
-bool check()
+int n,a [2][sz];
+int arr[sz],b0[sz],b1[sz],ans0[sz],ans1[sz];
+bool f0,f1;
+void slove()
 {
-	if(n==1) 
+	f0=f1=true;
+	b0[1]=0;
+	b0[1]=1;
+	f(i,2,n)
 	{
-		vis[1]=a[1];
-	return true;
-	}
-	f(i,1,n)
-	{
-		if(i==n)
+		if(f0)
 		{
-			if(vis[i]+vis[i-1]==a[i])
-				return true;
-			else return false;
+			b0[i]=arr[i-1]-b0[i-1]-b0[i-2];
+			if(b0[i]<0||b0[i]>1)f0=false;
 		}
-		else 
+		if(f1)
 		{
-			vis[i+1]=a[i]-vis[i]-vis[i-1];
-			if(vis[i+1]<0||vis[i+1]>1) return false;
+			b1[i]=arr[i-1]-b1[i-1]-b1[i-2];
+			if(b1[i]<0||b1[i]>1)f1=false;
 		}
 	}
+	if(arr[n]!=b0[n]+b0[n-1])
+		f0=false;
+	if(arr[n]!=b1[n]+b1[n-1])
+		f1=false;
+	
 }
 int main()
 {
 	LOACL
+	int t;
 	cin>>t;
 	while(t--)
 	{
 		CLR(a,0);
-		CLR(vis,0);
-	 
+
 		cin>>n;
-		f(i,1,n)cin>>a[i];
-		while(1)
+		f(i,1,n)cin>>arr[i];
+		slove();
+		int cnt0 =0,cnt1=0;
+		if(f0  && f1)
 		{
-			vis[1]=1;
-			if(check()) break;
-			vis[1]=0;
-			if(check()) break;
+			f(i,1,n)
+			{
+				if(b0[i]==1 && b1[i]==1)
+				{
+					ans1[cnt1++]=i ;
+				}
+				else if  (b0[i]==0 && b1[i]==0)	
+				ans0[cnt0++]=i ;	
+			}	
 		}
-		int s =0;
-		f(i,1,n) if(vis[i]==1)s++;
-		cout<<s<<" ";
-		f(i,1,n) if(vis[i]==1) cout<<i<<" ";cout<<endl;
+		else if(  f1 )
+		{
+			f(i,1,n)
+            if (b1[i] == 1)  
+                ans1[cnt1++] = i;  
+            else  
+                ans0[cnt0++] = i;  
+		}
+		else if(  f0 )
+		{
+			f(i,1,n)
+            if (b0[i] == 1)  
+                ans1[cnt1++] = i;  
+            else  
+                ans0[cnt0++] = i;  
+		}
+		cout<<cnt1;
+		f(i,0,cnt1-1)cout<<" "<<ans1[i];cout<<endl;
+		cout<<cnt0;
+		f(i,0,cnt0-1)cout<<" "<<ans0[i];cout<<endl;
 
-		cout<<n-s<<" ";
-		f(i,1,n) if(vis[i]==0) cout<<i<<" ";cout<<endl;
 
-	} 	
+	}
 	return 0;
 }
