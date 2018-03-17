@@ -22,7 +22,7 @@ vector<LL> ans;
  
 void p(LL s){
     LL t1=s*10+4;
-    if(t1>LL(444444444)) return;
+    if(t1>LL(4444444444ll)) return;
     ans.pb(t1);
     LL t2=s*10+7;
     if(t2>LL(444444444)) return;
