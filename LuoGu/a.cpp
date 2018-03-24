@@ -1,46 +1,30 @@
-#include<iostream>
-#include<cstring>
-#include<cstdio>
-#include<algorithm>
-#include<string>
-#include<map>
-typedef long long ll;
+#include<bits/stdc++.h>
 using namespace std;
-int n,m,ans;
-int a[2509][2509],f[2509][2509],s1[2509][2509],s2[2509][2509];//s1为横向，s2为纵向 
+#define LOACL  freopen("in","r",stdin);\
+            freopen("out","w",stdout); 
+
+const int  inf = 987654321;
+const int sz = 1e6 + 5;
+const int mod = 1e9 + 7;
+const int sqrtn = 300; 
+#define pb push_back
+#define add(u,v,w) (e[++tot]=(edge){v,head[u],1},head[u]=tot;) 
+#define f(i,l,r) for(int i=(int)l;i<=(int)r;++i)
+#define g(i,l,r) for(int i=(int)l;i>=(int)r;--i)
+#define CLR(arr,val) memset(arr,val,sizeof(arr)) 
+typedef long long LL; 
+
+inline void read(LL& x){int f=1;char c;while(((c=getchar())<'0'||c>'9')&&c!='-');c=='-'?(f=-1,x=0):(x=c-'0');while((c=getchar())>='0'&&c<='9')x=x*10+c-'0';x*=f;}
+inline void read(int& x){LL t;read(t);x=t;}
+
+
 int main()
 {
-    cin>>n>>m;
-    //第一遍左上——右下 
-    for(int i=1;i<=n;i++)
-    for(int j=1;j<=m;j++)
-    {
-        scanf("%d",&a[i][j]);
-        if(!a[i][j])
-        {
-            s1[i][j]=s1[i][j-1]+1;
-            s2[i][j]=s2[i-1][j]+1;
-        }
-        if(a[i][j])
-        f[i][j]=min(f[i-1][j-1],min(s1[i][j-1],s2[i-1][j]))+1;
-        ans=max(ans,f[i][j]);
-    }
-    //第二遍右上——左下 
-    memset(f,0,sizeof(f)); 
-    memset(s1,0,sizeof(s1));//数组置0 
-    memset(s2,0,sizeof(s2)); 
-    for(int i=1;i<=n;i++)
-    for(int j=m;j>=1;j--)
-    {
-        if(!a[i][j])
-        {
-            s1[i][j]=s1[i][j+1]+1;
-            s2[i][j]=s2[i-1][j]+1;
-        }
-        if(a[i][j])
-        f[i][j]=min(f[i-1][j+1],min(s1[i][j+1],s2[i-1][j]))+1;
-        ans=max(ans,f[i][j]);
-    }
-    cout<<ans<<endl;
-    return 0;
+	LOACL 
+     
+
+
+
+	return 0;
+
 }
