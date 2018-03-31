@@ -8,8 +8,7 @@ const int MAXN = 101;
 const int MOD = 9999973;
 int n,m;
 ll dp[MAXN][MAXN][MAXN];
-inline int C( int num ) 
-{ // 相当于C(num,2)
+inline int C( int num ) { // 相当于C(num,2)
     return num*(num-1)/2;
 }
 int main() {

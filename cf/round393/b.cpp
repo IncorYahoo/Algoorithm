@@ -32,19 +32,20 @@ int main()
     FASTIO
     cin>>n>>m>>k;
     l=1,r=m;
-    while(r>l) 
+    while(r-l>1) 
+  //  REP(i,1,5)
     {
     	mid=(l+r)>>1;
-    	int s =  n*mid - (k)*(1+k)/2- (n-k)*(1+n-k)/2;
-	// 	DBG(s);     	
-    	if(s >  m)  r=mid-1;
-    	else if (s==m) l=r=mid;
-    	else l=mid+1;
-
+       // DBG(mid);  
+    	int s =  n*mid - (k-1)*(k)/2- (n-k)*(1+n-k)/2;
+	  //	DBG(s);     	
+    	if(s >  m)  r=mid; 
+    	else l=mid;
+     //   DBG(l);  
+     //   DBG(r); 
     }
-	DBG(l);  
-	DBG(r);  
-    cout<<min(l,r)-1<<endl;
+	 
+    cout<<min(l,r)<<endl;
 
     CLOCK
     return 0;
