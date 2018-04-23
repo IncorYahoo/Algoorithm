@@ -51,13 +51,13 @@ int getsum(int x )
     }
     return sum;
 }
- int main()
+int main()
 {
     LOACL
     
     n=read(),m=read();
    
-    DBG2(n,m);
+//    DBG2(n,m);
 
     REP(i,1,n)
     {

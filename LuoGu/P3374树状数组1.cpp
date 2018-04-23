@@ -17,7 +17,7 @@ const int    sz = (int)1e6 + 5;
 
  
 #define low(x) (x)&(-x)
-int n,m,op,x,y,k,a[sz],t[sz<<1];
+int n,m,op,x,y,a[sz];
 int read()
 {
     int x= 0;
@@ -37,7 +37,7 @@ void add(int x,int y)
 {
     while(x<=n)
     {
-        t[x]+=y;
+        a[x]+=y;
         x+=low(x);
     }
 }
@@ -46,7 +46,7 @@ int getsum(int x )
     int sum =0;
     while(x)
     {
-        sum+=t[x];
+        sum+=a[x];
         x-=low(x);
     }
     return sum;
@@ -57,34 +57,17 @@ int getsum(int x )
     
     n=read(),m=read();
    
-    DBG2(n,m);
-
+ 
     REP(i,1,n)
     {
-        a[i] = read();
-        add(i,a[i]-a[i-1]);
+        add(i,read());
     }
- 
-  
+  //   REP(i,1,n) DBG(a[i]);
     REP(i,1,m)
     {
-        op =read() ;
-        if(op == 1)
-        { 
-            x=read(),y=read(),k=read();
-             add(y+1,-k);
-             add(x,k);
-        }
-        else
-        {
-           x =read(); 
-           cout<<getsum(x)<<endl;
-        }
- 
-    }
- 
- 
-
-
+        op =read(),x=read(),y=read();
+        if(op == 1)  add(x,y);
+        else cout<<getsum( y)-getsum(x-1)<<endl;
+    } 
     return 0;
 }
