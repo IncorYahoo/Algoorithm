@@ -25,39 +25,42 @@
  #define all(x) x.begin(),x.end()
  #define low(x) (x)&(-x)
  #define pb push_back
- typedef   long long ll; 
+ typedef long long ll; 
  typedef double dl; 
- 
-int n,k;
-ll a[sz];
-ll b[sz];
-int main()
+ int t,n,a[sz];
+void ff()
 {
-  //   LOACL
-     
-     cin>>n>>k;
-     REP(i,1,n) cin>>a[i];
-     REP(i,1,n) b[i]=a[i];
-     //make_heap(a+1,a+n+1);
-     if(n>=k)
-     {
-     	 sort(a+1,a+n+1);
+	if(n<=0)cout<<0<<endl;
+	else if(n==1) cout<<a[1]<<endl;
+	int excl =0,incl =a[1];
+	int excl_new;
+	
+	 
+	REP(i,2,n)
+	{
+		 
+		excl_new = (excl>incl)?excl:incl;
+		incl = excl +a[i];
+		excl = excl_new; 
+	} 
+	
+	cout<<(incl>excl?incl:excl)<<endl;
 
-	     REP(i,1,n)
-	     {
-	     	REP(j,1,k)
-	     	{
-	     		if(b[i]==a[j])
-	     			cout<<b[i]<<endl;
-	     	}
-	     }
-     }
-    else 
-    {
+}
+  
+ int main()
+ {
+     LOACL
+ 	cin>>t;
+ 	while(t--)
+ 	{
+ 		cin>>n;
+ 		REP(i,1,n)cin>>a[i];
+ 		ff();	
+ 	}
 
-    }
-     //REP(i,1,n) cout<<a[i]<<endl;
 
-      
+
+
      return 0;
  }
